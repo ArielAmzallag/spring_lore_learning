@@ -11,5 +11,7 @@ public interface DirectorMapper {
     DirectorDTO toDTO(Director director);
 
     @Mapping(target = "movies", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     Director toEntity(DirectorDTO directorDTO);
 }

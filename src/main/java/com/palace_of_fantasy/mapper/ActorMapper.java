@@ -11,5 +11,7 @@ public interface ActorMapper {
     ActorDTO toDTO(Actor actor);
 
     @Mapping(target = "movies", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     Actor toEntity(ActorDTO actorDTO);
 }

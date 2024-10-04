@@ -15,13 +15,8 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/api/movies/**").authenticated()
-                .requestMatchers("/api/actors/**").authenticated()
-                .requestMatchers("/api/directors/**").authenticated()
-                .requestMatchers("/api/genres/**").authenticated()
                 .anyRequest().permitAll()
-            )
-            .httpBasic();
+            );
 
         return http.build();
     }

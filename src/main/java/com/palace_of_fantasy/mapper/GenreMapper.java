@@ -11,5 +11,7 @@ public interface GenreMapper {
     GenreDTO toDTO(Genre genre);
 
     @Mapping(target = "movies", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     Genre toEntity(GenreDTO genreDTO);
 }

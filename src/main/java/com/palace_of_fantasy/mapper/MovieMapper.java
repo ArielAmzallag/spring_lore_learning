@@ -1,8 +1,6 @@
 package com.palace_of_fantasy.mapper;
 
-import com.palace_of_fantasy.model.Actor;
-import com.palace_of_fantasy.model.Director;
-import com.palace_of_fantasy.model.Genre;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.mapstruct.Mapper;
@@ -10,9 +8,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 import com.palace_of_fantasy.dto.MovieDTO;
+import com.palace_of_fantasy.model.Actor;
+import com.palace_of_fantasy.model.Director;
+import com.palace_of_fantasy.model.Genre;
 import com.palace_of_fantasy.model.Movie;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {ActorMapper.class, DirectorMapper.class, GenreMapper.class})
 public interface MovieMapper {
@@ -35,7 +34,7 @@ public interface MovieMapper {
 
     @Named("directorToId")
     static List<Long> directorToId(List<Director> directors) {
-        return directors.stream().map(director -> director.getId()).collect(Collectors.toList());
+        return directors.stream().map(Director::getId).collect(Collectors.toList());
     }
 
     @Named("genreToId")

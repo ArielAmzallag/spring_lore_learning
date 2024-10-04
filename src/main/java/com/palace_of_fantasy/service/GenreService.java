@@ -9,7 +9,9 @@ import com.palace_of_fantasy.dto.GenreDTO;
 import com.palace_of_fantasy.exception.ResourceNotFoundException;
 import com.palace_of_fantasy.mapper.GenreMapper;
 import com.palace_of_fantasy.model.Genre;
+import com.palace_of_fantasy.model.Movie;
 import com.palace_of_fantasy.repository.GenreRepository;
+import com.palace_of_fantasy.repository.MovieRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -45,9 +47,19 @@ public class GenreService {
         return genreMapper.toDTO(updatedGenre);
     }
 
+       
+    private final MovieRepository movieRepository;
     public void deleteGenre(Long id) {
         Genre genre = genreRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Genre not found with id: " + id));
+        
+        // Remove associations with movies
+        List<Movie> movies = genre.getMovies();
+        for (Movie movie : movies) {
+            movie.getGenres().remove(genre);
+        }
+        movieRepository.saveAll(movies);
+        
         genreRepository.delete(genre);
     }
 }

@@ -9,7 +9,9 @@ import com.palace_of_fantasy.dto.ActorDTO;
 import com.palace_of_fantasy.exception.ResourceNotFoundException;
 import com.palace_of_fantasy.mapper.ActorMapper;
 import com.palace_of_fantasy.model.Actor;
+import com.palace_of_fantasy.model.Movie;
 import com.palace_of_fantasy.repository.ActorRepository;
+import com.palace_of_fantasy.repository.MovieRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -47,9 +49,19 @@ public class ActorService {
         return actorMapper.toDTO(updatedActor);
     }
 
+    private final MovieRepository movieRepository;
+
     public void deleteActor(Long id) {
         Actor actor = actorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ACTOR_NOT_FOUND_MESSAGE + id));
+        
+        // Remove associations with movies
+        List<Movie> movies = actor.getMovies();
+        for (Movie movie : movies) {
+            movie.getActors().remove(actor);
+        }
+        movieRepository.saveAll(movies);
+        
         actorRepository.delete(actor);
     }
 }
