@@ -39,4 +39,4 @@ The Palace of Fantasy Movie API is a Spring Boot application that provides RESTf
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/palace-of-fantasy-movie-api.git
+git clone https://github.com/ArielAmzallag/spring_lore_learning.git
