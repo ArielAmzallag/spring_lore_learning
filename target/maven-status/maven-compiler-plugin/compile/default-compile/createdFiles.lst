@@ -1,0 +1,10 @@
+com\palace_of_fantasy\dto\LoreEntryDTO.class
+com\palace_of_fantasy\LoreKeeperApplication.class
+com\palace_of_fantasy\controller\LoreController.class
+com\palace_of_fantasy\service\LoreService.class
+com\palace_of_fantasy\config\SecurityConfig.class
+com\palace_of_fantasy\exception\ResourceNotFoundException.class
+com\palace_of_fantasy\mapper\LoreEntryMapper.class
+com\palace_of_fantasy\repository\LoreEntryRepository.class
+com\palace_of_fantasy\model\LoreEntry.class
+com\palace_of_fantasy\mapper\LoreEntryMapperImpl.class
